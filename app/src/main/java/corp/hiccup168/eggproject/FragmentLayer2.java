@@ -54,9 +54,12 @@ public class FragmentLayer2 extends Fragment {
 //                new ArrayAdapter<String>((MainActivity)getActivity(), android.R.layout.simple_list_item_1, area_contents);
 
         // Using custom ArrayAdpater
-        // ListViewªº³]­p¹Ï: entryªº¥¬§½ »P ¸ê®Æ(¹Ï¡B¤å)
+        // ListViewçš„è¨­è¨ˆåœ–: entryçš„å¸ƒå±€ èˆ‡ è³‡æ–™(åœ–ã€æ–‡)
         CustomListAdapter<String> itemsAdapter =
-                new CustomListAdapter<String>((MainActivity)getActivity(), R.layout.custom_list, area_contents);
+                new CustomListAdapter<String>(
+                        (MainActivity)getActivity(),
+                        R.layout.custom_list, // TextView resource id only.
+                        area_contents);
 
         ListView listview  = (ListView)view.findViewById(R.id.myAreaListView);
         listview.setScrollContainer(false);
@@ -66,9 +69,9 @@ public class FragmentLayer2 extends Fragment {
         ViewGroup.LayoutParams params = listview.getLayoutParams();
         params.height = MeasureHeightOfView(listview, itemsAdapter);
         listview.setLayoutParams(params);
-        listview.requestLayout(); // ¤W³ø­«·s³]¸m
+        listview.requestLayout(); // ä¸Šå ±é‡æ–°è¨­ç½®
 
-        /*±µ¤Wfragment layer 3: ¥DÃD*/
+        /*æ¥ä¸Šfragment layer 3: ä¸»é¡Œ*/
         listview.setOnItemClickListener(
                 new AdapterView.OnItemClickListener() {
                     @Override
@@ -92,7 +95,7 @@ public class FragmentLayer2 extends Fragment {
         return view;
     }
 
-    /*­pºâ«È»slistView¤¸¥óªº°ª«×*/
+    /*è¨ˆç®—å®¢è£½listViewå…ƒä»¶çš„é«˜åº¦*/
     private int MeasureHeightOfView(ViewGroup v, ArrayAdapter adapter){
 
         int numberOfItems = adapter.getCount();
@@ -102,9 +105,9 @@ public class FragmentLayer2 extends Fragment {
 
         Log.d("info", "@: numberOfItems > " + numberOfItems);
 
-        // Á`©M¨C­Óentry°ª«×
+        // ç¸½å’Œæ¯å€‹entryé«˜åº¦
         for (int itemPos = 0; itemPos < numberOfItems; itemPos++) {
-            // ¬O¦³§_ºØ¥i¯à©Ê¬O¨C­Óitem®M¥Î¤£¦Pªº¥¬§½¡H
+            // æ˜¯æœ‰å¦ç¨®å¯èƒ½æ€§æ˜¯æ¯å€‹itemå¥—ç”¨ä¸åŒçš„å¸ƒå±€ï¼Ÿ
             // get entry
             View item = adapter.getView(itemPos, null, v);
             // assertion: item instanceof TextView

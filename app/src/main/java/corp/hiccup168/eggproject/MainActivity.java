@@ -64,8 +64,11 @@ public class MainActivity extends ActionBarActivity {
 
     private void initView(){
         //動態資訊 陣列
-        int[] img = {R.drawable.bg2f, R.drawable.bg3f, R.drawable.bg4f, R.drawable.bg5f, R.drawable.bg6f};
-        String[] arr = {"2F", "3F", "4F", "5F", "6F"};
+//        int[] img = {R.drawable.bg2f, R.drawable.bg3f, R.drawable.bg4f, R.drawable.bg5f, R.drawable.bg6f};
+//        String[] arr = {"2F", "3F", "4F", "5F", "6F"};
+
+        int[] img = {R.drawable.bg6f, R.drawable.bg5f, R.drawable.bg4f, R.drawable.bg3f, R.drawable.bg2f};
+        String[] arr = {"6F", "5F", "4F", "3F", "2F"};
 
         //取得ListView元件
         ListView list = (ListView)findViewById(R.id.MyListView);
@@ -122,8 +125,8 @@ public class MainActivity extends ActionBarActivity {
 
                                     FragmentManager fm = getFragmentManager();
                                     FragmentTransaction ft = fm.beginTransaction();
-                                    ft.add(fl.getId(), FragmentLayer2.getInstance(
-                                            AreaModel.getAreaContents(floor)
+                                    ft.replace(fl.getId(), AreaFragment.getInstance(
+                                            AreaModel.getAreaContents(floor), floor.charAt(0) - 48
                                     ), "fragment layer " + floor);
                                     ft.commit();
                                     fm.executePendingTransactions();
